@@ -9,3 +9,14 @@ services:
       - POSTGRES_PASSWORD=cache-secret
       - POSTGRES_USER=cache-demo
       - POSTGRES_DB=spring-cache
+  redis:
+    image: redis:7.0.12
+    command: redis-server --requirepass cache-demo
+    ports:
+      - "8640:6379"
+    volumes:
+      - redis:/data
+
+volumes:
+  redis:
+    driver: local
